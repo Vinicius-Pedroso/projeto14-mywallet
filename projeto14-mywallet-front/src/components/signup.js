@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import Largebutton from './largebutton'
 import Footnote from './footnote'
+import Header from './header'
 import React from 'react'
 import { useState} from 'react';
 
-export default function SignIn (){
+export default function Signup (){
 
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
