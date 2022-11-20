@@ -6,12 +6,12 @@ export default function ExpensesButton ({type}){
             
             {type === "plus" ? 
                 <Button>
-                    <img src='./img/plus.png' />
+                    <ion-icon name="add-circle-outline"/>
                     <p>Nova entrada</p>
                 </Button>
             : 
                 <Button>
-                    <img src='./img/minus.png' />
+                    <ion-icon name="remove-circle-outline" />
                     <p>Nova saída</p>
                 </Button>
             }
@@ -21,7 +21,7 @@ export default function ExpensesButton ({type}){
 }
 
 const Container = styled.div`
-    width: 45%;
+    width: 48%;
     height: 80%;
     display: flex;
     justify-content: space-around;
@@ -33,13 +33,23 @@ const Button = styled.button`
     border-radius: 5px;
     border: none;
     background: #A328D6;
-    display: block;
-    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     p{
+        padding-bottom: 12px;
+        padding-left: 6px;
         font-family: Raleway;
         font-size: 17px;
         font-weight: 700;
         color: white;
+    }
+
+    ion-icon {
+        padding-top: 12px;
+        padding-left: 6px;
+        color: white;
+        font-size: 24px;
     }
 `

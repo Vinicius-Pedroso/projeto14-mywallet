@@ -39,6 +39,6 @@ const FootButtons = styled.div`
     padding-left: 5%;
     padding-right: 5%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 `
