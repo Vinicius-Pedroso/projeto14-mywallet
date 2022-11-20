@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import largebutton from './largebutton'
-import footnote from './footnote'
-import { useState, useEffect } from 'react';
+import Largebutton from './largebutton'
+import Footnote from './footnote'
+import React from 'react'
+import { useState} from 'react';
 
 export default function SignIn (){
 
@@ -28,15 +29,15 @@ export default function SignIn (){
                 <Buttonregistry type='text' placeholder="Confirme a senha" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)}/>
             </Center>
 
-            <largebutton></largebutton>
-            <footnote></footnote>
+            <Largebutton props={"Cadastrar"}/>
+            <Footnote props={"Já tem uma conta? Entre agora!"}/>
 
         </Container>
     )
 };
 
 const Container = styled.div`
-    background-color: #A328D6;
+    background-color: #8C11BE;
     width: 100%;
     height: 100vh;
     display: block;

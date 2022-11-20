@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default function Largebutton (props){
+export default function Largebutton ({props}){
     return (
         <Buttonenter >
                 <p>{props}</p>
@@ -19,7 +19,7 @@ const Buttonenter = styled.div`
         justify-content: center;
         width: 326px;
         height: 46px;
-        background-color: #FF4791;
+        background-color: #A328D6;
         border: none;
         border-radius: 5px;
         color: white;

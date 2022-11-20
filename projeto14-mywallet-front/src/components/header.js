@@ -9,7 +9,6 @@ export default function Header (){
 }
 
 const Logo = styled.div`
-    background-color: #0E0E13;
     padding-top: 100px;
     display:flex;
     justify-content: center;
@@ -17,6 +16,7 @@ const Logo = styled.div`
     margin-bottom: 50px;
 
     p{
+        color: white;
         font-family: Saira Stencil One;
         font-size: 32px;
         font-weight: 400;

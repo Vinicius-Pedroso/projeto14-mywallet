@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export default function Footnote(){
+export default function Footnote({props}){
     return (
         <Footertext>
-                    <p>Primeira vez? Cadastre-se</p>
+                    <p>{props}</p>
         </Footertext>
     )
-}
+};
 
 const Footertext = styled.div`
     display: flex;
