@@ -16,20 +16,21 @@ export default function Signup (){
 
     function SignUser() {
 
-        const signUserData = axios.post('http://localhost:5000/Signup',{
+        const newUser = {
             name: name,
             email: email,
             password: password,
             passwordConfirm: passwordConfirm
-        }, {})
-        
+        }
+
+        const signUserData = axios.post('http://localhost:5000/Signup',newUser, {})
+
         signUserData.then(response => {
             console.log(response.data)
                 navigate("/")
         })
         signUserData.catch(error => {
             console.log(error)
-            alert("Não foi possível efetuar o cadastro")
         })
     }
 

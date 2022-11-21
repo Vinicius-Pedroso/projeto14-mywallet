@@ -21,7 +21,7 @@ export default function Login (){
 
         console.log(temp)
 
-        const loginUserData = axios.put(`http://localhost:5000/`, {
+        const loginUserData = axios.post(`http://localhost:5000/`, {
             email: email,
             password: password
         }, {})
