@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Largebutton from './largebutton'
 import Footnote from './footnote'
 import Header from './header'
 import React from 'react'
@@ -17,15 +16,12 @@ export default function Signup (){
 
     function SignUser() {
 
-        const signUserData = axios.post('http://localhost:5000/Signup', {}, {
-            headers: {
-                name: name,
-                email: email,
-                password: password,
-                passwordConfirm: passwordConfirm
-            }
-        })
-
+        const signUserData = axios.post('http://localhost:5000/Signup',{
+            name: name,
+            email: email,
+            password: password,
+            passwordConfirm: passwordConfirm
+        }, {})
         
         signUserData.then(response => {
             console.log(response.data)
@@ -42,6 +38,7 @@ export default function Signup (){
 
             <Header></Header>
 
+            <form>
             <Center>
                 <Buttonregistry type='text' placeholder="Nome" value={name} onChange={e => setName(e.target.value)}/>
             </Center>
@@ -54,12 +51,13 @@ export default function Signup (){
             <Center>
                 <Buttonregistry type='text' placeholder="Confirme a senha" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)}/>
             </Center>
+            </form>
 
-            <Largebutton props={"Cadastrar"} onClick={() => SignUser()}/>
+            <Buttonenter onClick={SignUser}><p>Cadastrar</p></Buttonenter>
             <Link to="/">
                 <Footnote props={"Já tem uma conta? Entre agora!"} />
             </Link>
-            
+
         </Container>
     )
 };
@@ -92,5 +90,26 @@ const Buttonregistry = styled.input`
         font-family: Raleway;
         font-size: 20px;
         font-weight: 400;
+    }
+`
+
+const Buttonenter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 326px;
+        height: 46px;
+        background-color: #A328D6;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-family: raleway;
+        font-size: 20px;
+        font-weight: 700;
     }
 `

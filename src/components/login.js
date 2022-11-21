@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Header from './header';
 import { useState, useEffect} from 'react';
-import Largebutton from './largebutton';
 import Footnote from './footnote';
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
@@ -13,24 +12,19 @@ export default function Login (){
     const [email, setEmail] = useState("")
     const navigate = useNavigate()
 
-    const Temp = localStorage.getItem("User_Info")
-    const UserData = JSON.parse(Temp)
-
-    useEffect(() => {
-        if (UserData !== null){
-            console.log("UserData")
-        }
-        
-    }, [])
-
     function LoginUser (){
 
-        const loginUserData = axios.post(`http://localhost:5000/`, {}, {
-            headers: {
-                email: email,
-                password: password
-            }
-        })
+        const temp = {
+            email: email,
+            password: password
+        }
+
+        console.log(temp)
+
+        const loginUserData = axios.put(`http://localhost:5000/`, {
+            email: email,
+            password: password
+        }, {})
 
         loginUserData.then(response => {
             console.log(response.data)
@@ -54,7 +48,7 @@ export default function Login (){
                 <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
             </Center>
 
-            <Largebutton props={"Entrar"} onClick={() => LoginUser()}/>
+            <Buttonenter onClick={LoginUser}><p>Entrar</p></Buttonenter>
             <Link to="/Signup">
                 <Footnote props={"Primeira vez? Cadastre-se!"}/>
             </Link>
@@ -91,5 +85,26 @@ const Buttonregistry = styled.input`
         font-family: Raleway;
         font-size: 20px;
         font-weight: 400;
+    }
+`
+
+const Buttonenter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 326px;
+        height: 46px;
+        background-color: #A328D6;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-family: raleway;
+        font-size: 20px;
+        font-weight: 700;
     }
 `
