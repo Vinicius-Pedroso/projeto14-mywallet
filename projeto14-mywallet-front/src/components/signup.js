@@ -4,6 +4,8 @@ import Footnote from './footnote'
 import Header from './header'
 import React from 'react'
 import { useState} from 'react';
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios';
 
 export default function Signup (){
 
@@ -11,6 +13,29 @@ export default function Signup (){
     const [email, setEmail] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [name, setName] = useState("")
+    const navigate = useNavigate()
+
+    function SignUser() {
+
+        const signUserData = axios.post('http://localhost:5000/Signup', {}, {
+            headers: {
+                name: name,
+                email: email,
+                password: password,
+                passwordConfirm: passwordConfirm
+            }
+        })
+
+        
+        signUserData.then(response => {
+            console.log(response.data)
+                navigate("/")
+        })
+        signUserData.catch(error => {
+            console.log(error)
+            alert("Não foi possível efetuar o cadastro")
+        })
+    }
 
     return (
         <Container>
@@ -30,9 +55,11 @@ export default function Signup (){
                 <Buttonregistry type='text' placeholder="Confirme a senha" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)}/>
             </Center>
 
-            <Largebutton props={"Cadastrar"}/>
-            <Footnote props={"Já tem uma conta? Entre agora!"}/>
-
+            <Largebutton props={"Cadastrar"} onClick={() => SignUser()}/>
+            <Link to="/">
+                <Footnote props={"Já tem uma conta? Entre agora!"} />
+            </Link>
+            
         </Container>
     )
 };

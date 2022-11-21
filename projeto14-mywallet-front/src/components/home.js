@@ -3,10 +3,7 @@ import ExpensesButton from "./expenseButton";
 import ExpensesBoard from "./expensesBoard";
 import UserHeader from './userHeader';
 
-export default function Home ({setTransactionType}){
-
-    const trans = setTransactionType
-
+export default function Home (){
 
     return (
         <Container>
@@ -17,8 +14,8 @@ export default function Home ({setTransactionType}){
             </ExpensesBoard>
 
             <FootButtons>
-                <ExpensesButton type="plus" />
-                <ExpensesButton type="minus" />
+                    <ExpensesButton type="plus" />
+                    <ExpensesButton type="minus"/>
             </FootButtons>
             
         </Container>

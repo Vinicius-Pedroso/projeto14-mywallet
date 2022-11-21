@@ -9,7 +9,8 @@ export default function NoRegister (){
 }
 
 const Container = styled.div`
-    width: 100%;
+    padding-left: 10%;
+    width: 80%;
     height: 100%;
     display: flex;
     justify-content: center;

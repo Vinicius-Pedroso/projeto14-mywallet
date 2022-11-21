@@ -1,17 +1,47 @@
 import styled from 'styled-components'
 import Header from './header';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Largebutton from './largebutton';
 import Footnote from './footnote';
 import React from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom'
+import axios from 'axios';
 
 export default function Login (){
 
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const navigate = useNavigate();
-    
+    const navigate = useNavigate()
+
+    const Temp = localStorage.getItem("User_Info")
+    const UserData = JSON.parse(Temp)
+
+    useEffect(() => {
+        if (UserData !== null){
+            console.log("UserData")
+        }
+        
+    }, [])
+
+    function LoginUser (){
+
+        const loginUserData = axios.post(`http://localhost:5000/`, {}, {
+            headers: {
+                email: email,
+                password: password
+            }
+        })
+
+        loginUserData.then(response => {
+            console.log(response.data)
+                navigate("/Home")
+        })
+        loginUserData.catch(error => {
+            console.log(error)
+            alert("Não foi possível efetuar o login")
+        })
+    }
+
     return (
         <Container>
 
@@ -24,9 +54,11 @@ export default function Login (){
                 <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
             </Center>
 
-            <Largebutton props={"Entrar"}/>
-            <Footnote props={"Primeira vez? Cadastre-se!"}/>
-
+            <Largebutton props={"Entrar"} onClick={() => LoginUser()}/>
+            <Link to="/Signup">
+                <Footnote props={"Primeira vez? Cadastre-se!"}/>
+            </Link>
+            
         </Container>
     )
 };

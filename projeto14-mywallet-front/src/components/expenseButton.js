@@ -1,16 +1,20 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
 
 export default function ExpensesButton ({type}){
+
+    const navigate = useNavigate()
+
     return(
         <Container>
             
             {type === "plus" ? 
-                <Button>
+                <Button onClick={() => navigate("/Transaction")}>
                     <ion-icon name="add-circle-outline"/>
                     <p>Nova entrada</p>
                 </Button>
             : 
-                <Button>
+                <Button onClick={() => navigate("/Transaction")}>
                     <ion-icon name="remove-circle-outline" />
                     <p>Nova saída</p>
                 </Button>

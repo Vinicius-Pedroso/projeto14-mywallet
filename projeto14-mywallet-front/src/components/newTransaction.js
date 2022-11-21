@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import Largebutton from "./largebutton"
 import { useState} from 'react';
 
-export default function NewTransaction ({type}){
+export default function NewTransaction (){
 
     const transactionType = "saída"
 
