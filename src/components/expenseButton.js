@@ -9,12 +9,12 @@ export default function ExpensesButton ({type}){
         <Container>
             
             {type === "plus" ? 
-                <Button onClick={() => navigate("/Transaction")}>
+                <Button onClick={() => navigate("/Transaction/entrada")}>
                     <ion-icon name="add-circle-outline"/>
                     <p>Nova entrada</p>
                 </Button>
             : 
-                <Button onClick={() => navigate("/Transaction")}>
+                <Button onClick={() => navigate("/Transaction/saida")}>
                     <ion-icon name="remove-circle-outline" />
                     <p>Nova saída</p>
                 </Button>

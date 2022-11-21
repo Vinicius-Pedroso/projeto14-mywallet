@@ -3,24 +3,36 @@ import dayjs from 'dayjs'
 import axios from 'axios'
 import { useState} from 'react';
 import {useNavigate} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export default function NewTransaction (){
 
-    const transactionType = "saída"
+    let type = "saída"
+    let positiveTransaction = false
 
+    if (useParams().idPlan === "entrada"){
+        positiveTransaction = true
+        type = "entrada"
+    }
+    
     const [value, setValue] = useState("")
     const [description, setDescription] = useState("")
     const navigate = useNavigate()
 
-    function addTransaction (){
+    function AddTransaction (){
 
         const email = "email@gmail.com"
         const date = dayjs().format('D/M')
+        let tempvalue = value
+
+        if (!positiveTransaction){
+            tempvalue = tempvalue*-1
+        }
 
         const transactionData = axios.put(`http://localhost:5000/Transaction`, {
             date: date,
             description: description,
-            value: value
+            value: tempvalue
         }, {
             headers: {
                 User: email
@@ -41,12 +53,12 @@ export default function NewTransaction (){
     return (
         <Container>
 
-            <p>Nova {transactionType}</p>
+            <p>Nova {type}</p>
 
             <Buttonregistry type='text' placeholder="Valor" value={value} onChange={e => setValue(e.target.value)}/>
             <Buttonregistry type='text' placeholder="Descrição" value={description} onChange={e => setDescription(e.target.value)}/>
             
-            <Buttonenter onClick={addTransaction()}>
+            <Buttonenter onClick={AddTransaction()}>
                 <p></p>
             </Buttonenter>
 

@@ -5,11 +5,14 @@ import UserHeader from './userHeader';
 
 export default function Home (){
 
+    const Temp = localStorage.getItem("User_Info")
+    const UserData = JSON.parse(Temp)
+
     return (
         <Container>
-            <UserHeader user={"bob"}/>
+            <UserHeader user={UserData.name}/>
 
-            <ExpensesBoard>
+            <ExpensesBoard email={UserData.email}>
 
             </ExpensesBoard>
 

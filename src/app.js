@@ -13,7 +13,7 @@ export default function app (){
                 <Route path="/" element={<Login/>}></Route>
                 <Route path="/Signup" element={<Signup/>}/>
                 <Route path="/Home" element={<Home />}/>
-                <Route path="/Transaction" element={<NewTransaction />}/>
+                <Route path="/Transaction/:idPlan" element={<NewTransaction />}/>
             </Routes>
         </BrowserRouter>
     )

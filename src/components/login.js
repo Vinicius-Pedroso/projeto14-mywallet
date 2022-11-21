@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Header from './header';
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import Footnote from './footnote';
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
@@ -14,21 +14,16 @@ export default function Login (){
 
     function LoginUser (){
 
-        const temp = {
-            email: email,
-            password: password
-        }
-
-        console.log(temp)
-
         const loginUserData = axios.post(`http://localhost:5000/`, {
             email: email,
             password: password
         }, {})
 
         loginUserData.then(response => {
-            console.log(response.data)
-                navigate("/Home")
+
+            localStorage.setItem("User_Info", JSON.stringify(response.data))
+            navigate("/Home")
+
         })
         loginUserData.catch(error => {
             console.log(error)
