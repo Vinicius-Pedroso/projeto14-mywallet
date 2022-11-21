@@ -10,6 +10,9 @@ export default function NewTransaction (){
     let type = "saída"
     let positiveTransaction = false
 
+    const Temp = localStorage.getItem("User_Info")
+    const UserData = JSON.parse(Temp)
+
     if (useParams().idPlan === "entrada"){
         positiveTransaction = true
         type = "entrada"
@@ -21,7 +24,7 @@ export default function NewTransaction (){
 
     function AddTransaction (){
 
-        const email = "email@gmail.com"
+        const email = UserData.email
         const date = dayjs().format('D/M')
         let tempvalue = value
 
@@ -29,13 +32,13 @@ export default function NewTransaction (){
             tempvalue = tempvalue*-1
         }
 
-        const transactionData = axios.put(`http://localhost:5000/Transaction`, {
+        const transactionData = axios.post(`http://localhost:5000/Transaction`, {
             date: date,
             description: description,
             value: tempvalue
         }, {
             headers: {
-                User: email
+                user: email
             }
         })
 
@@ -58,9 +61,7 @@ export default function NewTransaction (){
             <Buttonregistry type='text' placeholder="Valor" value={value} onChange={e => setValue(e.target.value)}/>
             <Buttonregistry type='text' placeholder="Descrição" value={description} onChange={e => setDescription(e.target.value)}/>
             
-            <Buttonenter onClick={AddTransaction()}>
-                <p></p>
-            </Buttonenter>
+            <Buttonenter onClick={AddTransaction}><h1>Salvar {type}</h1></Buttonenter>
 
         </Container>
     )
@@ -100,14 +101,13 @@ const Buttonregistry = styled.input`
 `
 
 const Buttonenter = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top: 15px;
 
-    p {
+    h1 {
+        padding-bottom: px;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         width: 326px;
         height: 46px;
         background-color: #A328D6;
