@@ -21,6 +21,8 @@ export default function FooterRegister({ saldo }) {
 }
 
 const Footer = styled.div`
+    padding-left: 5%;
+    padding-right: 5%;
     height: 5%;
     padding-bottom: 5px;
     display: flex;

@@ -57,5 +57,4 @@ const TransactionLine = styled.div`
 const Container = styled.div`
     padding-left: 5%;
     padding-right: 5%;
-    height: 100%;
 `

@@ -5,14 +5,14 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import FooterRegister from "./footerRegister"
 
-export default function ExpensesBoard({email}) {
+export default function ExpensesBoard({ email }) {
 
     let haveResister = false
 
     const [transactions, setTransaction] = useState([])
 
     useEffect(() => {
-        const request = axios.get("http://localhost:5000/Transactions", {
+        const request = axios.get("http://localhost:5000/Transaction", {
             headers: {
                 User: email
             }
@@ -28,33 +28,37 @@ export default function ExpensesBoard({email}) {
     return (
         <Container>
             <Board>
-                <ExpensesList>
-                {haveResister ?
-                    <Register date={"Hoje"} description={"Café da manhã"} value={-13.95}></Register>
-                    :
-                    <></>
-                }
-                </ExpensesList>
-                {haveResister ?
-                    <FooterRegister saldo={-13.95}/>
-                    :
-                    <></>
-                }
-                {!haveResister ?
-                    <NoRegister></NoRegister>
-                    :
-                    <></>
-                }
-                
+
+                < ExpensesList >
+                    <Register date={"Hoje"} description={"Café da manhã"} value={-13.95}>
+                    </Register>
+                    <Register date={"Hoje"} description={"Salário"} value={4000}>
+                    </Register>
+                    <Register date={"Hoje"} description={"Tarde com os amigos"} value={-58.54}>
+                    </Register>
+                </ExpensesList >
+
+                <FooterRegister saldo={3927.51} >
+                </FooterRegister>
+
             </Board>
         </Container >
     )
 }
 
-//  maps not working
-// {transactions.map(line => (
-//     <Register date={line.date} description={line.description} value={line.value}></Register>
-// ))}
+// const register = true
+
+//     < ExpensesList >
+
+//     <Register date={"Hoje"} description={"Café da manhã"} value={-13.95}>
+
+//     </Register>
+
+// </ExpensesList >
+
+// <FooterRegister saldo={-13.95}/>
+                    
+// <NoRegister></NoRegister>
 
 const Container = styled.div`
     padding-left: 5%;
